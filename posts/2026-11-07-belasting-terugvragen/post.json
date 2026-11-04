@@ -35,37 +35,37 @@
         }
       ],
       "som": [
-        "70-plussers lieten in 2024 liggen",
-        "€ 29 mln"
+        "Kan nog over",
+        "2021 t/m 2025"
       ],
-      "wie_bron": "Bron: Rodi en Welingelichte Kringen, oktober 2026.",
-      "som_maat": 112
+      "wie_bron": "Bron: Belastingdienst, via Rodi en Welingelichte Kringen, oktober 2026. Bij de gemiddelden staat geen jaar.",
+      "som_maat": 78
     },
     {
       "sjabloon": "lijst",
-      "kop": "Vijf bijbaanjaren",
+      "kop": "Elk jaar een eigen deadline",
       "items": [
         {
           "figuur": "kalender",
-          "naam": "2021, nog tot 31 december",
-          "prijs": "€ 800"
+          "naam": "Aangifte over 2021 kan tot eind",
+          "prijs": "2026"
         },
         {
-          "figuur": "kopje",
-          "naam": "2022 tot en met 2024",
-          "prijs": "€ 2.400"
+          "figuur": "envelop",
+          "naam": "Aangifte over 2022 kan tot eind",
+          "prijs": "2027"
         },
         {
           "figuur": "telefoon",
-          "naam": "2025",
-          "prijs": "€ 800"
+          "naam": "Aangifte over 2025 kan tot eind",
+          "prijs": "2030"
         }
       ],
       "som": [
-        "Samen",
-        "€ 4.000"
+        "Nu het eerst",
+        "2021"
       ],
-      "wie": "Zoon De Vries, verzonnen voorbeeld. Elk jaar het gemiddelde."
+      "wie_bron": "Geen aangiftebrief gehad? Dan kan aangifte tot 5 jaar terug. Bron: Belastingdienst, 2026."
     },
     {
       "sjabloon": "stappen",
@@ -86,7 +86,7 @@
       ]
     }
   ],
-  "caption": "Over 2021 belasting terugvragen? Dat kan nog tot en met 31 december. Daarna is het weg.\n\nGeen aangiftebrief gehad? Dan mag je tot 5 jaar terug aangifte doen. In 2026 is dat dus nog over 2021. Wie een bijbaan heeft, krijgt vaak iets terug: gemiddeld € 400 bij 15 tot en met 17 jaar en € 800 bij 18 tot en met 23 jaar. 70-plussers lieten in 2024 samen € 29 miljoen liggen.\n\nZoon De Vries (verzonnen) had vijf jaar een bijbaan en deed nooit aangifte. Stel dat hij elk jaar het gemiddelde terugkrijgt: 5 x € 800 = € 4.000. Dat gaat alleen op als hij er elk jaar recht op heeft.\n\nZo pak je het aan:\n1. Kies een jaar. Over 2021 moet je aangifte uiterlijk 31 december binnen zijn.\n2. Vul de aangifte in, maar verstuur nog niet. Je ziet dan wat eruit komt.\n3. Krijg je geld terug? Verstuur. Over 2025 moet dat vanaf € 19.\n\nLet op: moet je over 2025 € 58 of meer betalen, dan moet je wel aangifte doen.\n\nBron: Belastingdienst (2026). Gemiddelden bijbaan en 70-plussers via Rodi en Welingelichte Kringen (oktober 2026). De bedragen van De Vries zijn een rekenvoorbeeld.\n\n#besparen #bespaartips #geldbesparen #belasting #belastingaangifte",
+  "caption": "Over 2021 belasting terugvragen? Dat kan nog tot en met 31 december. Daarna is het weg.\n\nGeen aangiftebrief gehad? Dan mag je tot 5 jaar terug aangifte doen. In 2026 is dat dus nog over 2021. Wie een bijbaan heeft, krijgt vaak iets terug: gemiddeld € 400 bij 15 tot en met 17 jaar en € 800 bij 18 tot en met 23 jaar.\n\nElk jaar is een aparte aangifte, met een eigen deadline. Over 2021 moet die uiterlijk 31 december 2026 binnen zijn, over 2022 uiterlijk 31 december 2027, en zo verder.\n\nZo pak je het aan:\n1. Kies een jaar. Over 2021 moet je aangifte uiterlijk 31 december binnen zijn.\n2. Vul de aangifte in, maar verstuur nog niet. Je ziet dan wat eruit komt.\n3. Krijg je geld terug? Verstuur. Over 2025 moet dat vanaf € 19.\n\nLet op: moet je over 2025 € 58 of meer betalen, dan moet je wel aangifte doen.\n\nBron: Belastingdienst (2026). Gemiddelden bijbaan: Belastingdienst, via Rodi en Welingelichte Kringen (oktober 2026).\n\n#besparen #bespaartips #geldbesparen #belasting #belastingaangifte",
   "bronnen": [
     "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/hoe_werkt_inkomstenbelasting/aangifte_doen/hoeveel-jaar-terug-belastingaangifte-doen",
     "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/belasting_betalen_terugvragen/check_of_u_belasting_terugkrijgt/check_of_u_belasting_terugkrijgt",
