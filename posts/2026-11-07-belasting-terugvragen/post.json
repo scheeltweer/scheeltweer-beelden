@@ -1,0 +1,97 @@
+{
+  "type": "carrousel",
+  "onderwerp": "Belasting terugvragen tot 5 jaar terug",
+  "slides": [
+    {
+      "sjabloon": "straat",
+      "groot": [
+        "31",
+        "december"
+      ],
+      "groot_maat": 195,
+      "geteld": 10,
+      "totaal": 10,
+      "tekst": "Laatste dag om belasting over 2021 terug te vragen. Geen aangiftebrief gehad? Dan kan het tot 5 jaar terug.",
+      "bron": "Bron: Belastingdienst, 2026"
+    },
+    {
+      "sjabloon": "lijst",
+      "kop": "Wie vaak iets terugkrijgt",
+      "items": [
+        {
+          "figuur": "kopje",
+          "naam": "Bijbaan, 15 t/m 17 jaar, gemiddeld",
+          "prijs": "€ 400"
+        },
+        {
+          "figuur": "kopje",
+          "naam": "Bijbaan, 18 t/m 23 jaar, gemiddeld",
+          "prijs": "€ 800"
+        },
+        {
+          "figuur": "envelop",
+          "naam": "Studie, kinderen of niet het hele jaar gewerkt",
+          "prijs": "Check"
+        }
+      ],
+      "som": [
+        "70-plussers lieten in 2024 liggen",
+        "€ 29 mln"
+      ],
+      "wie_bron": "Bron: Rodi en Welingelichte Kringen, oktober 2026.",
+      "som_maat": 112
+    },
+    {
+      "sjabloon": "lijst",
+      "kop": "Vijf bijbaanjaren",
+      "items": [
+        {
+          "figuur": "kalender",
+          "naam": "2021, nog tot 31 december",
+          "prijs": "€ 800"
+        },
+        {
+          "figuur": "kopje",
+          "naam": "2022 tot en met 2024",
+          "prijs": "€ 2.400"
+        },
+        {
+          "figuur": "telefoon",
+          "naam": "2025",
+          "prijs": "€ 800"
+        }
+      ],
+      "som": [
+        "Samen",
+        "€ 4.000"
+      ],
+      "wie": "Zoon De Vries, verzonnen voorbeeld. Elk jaar het gemiddelde."
+    },
+    {
+      "sjabloon": "stappen",
+      "kop": "Zo pak je het aan",
+      "stappen": [
+        {
+          "figuur": "kalender",
+          "tekst": "Kies een jaar. Over 2021 moet je aangifte uiterlijk 31 december binnen zijn."
+        },
+        {
+          "figuur": "potlood",
+          "tekst": "Vul de aangifte in, maar verstuur nog niet. Je ziet dan wat eruit komt."
+        },
+        {
+          "figuur": "envelop",
+          "tekst": "Krijg je geld terug? Verstuur. Over 2025 moet dat vanaf € 19."
+        }
+      ]
+    }
+  ],
+  "caption": "Over 2021 belasting terugvragen? Dat kan nog tot en met 31 december. Daarna is het weg.\n\nGeen aangiftebrief gehad? Dan mag je tot 5 jaar terug aangifte doen. In 2026 is dat dus nog over 2021. Wie een bijbaan heeft, krijgt vaak iets terug: gemiddeld € 400 bij 15 tot en met 17 jaar en € 800 bij 18 tot en met 23 jaar. 70-plussers lieten in 2024 samen € 29 miljoen liggen.\n\nZoon De Vries (verzonnen) had vijf jaar een bijbaan en deed nooit aangifte. Stel dat hij elk jaar het gemiddelde terugkrijgt: 5 x € 800 = € 4.000. Dat gaat alleen op als hij er elk jaar recht op heeft.\n\nZo pak je het aan:\n1. Kies een jaar. Over 2021 moet je aangifte uiterlijk 31 december binnen zijn.\n2. Vul de aangifte in, maar verstuur nog niet. Je ziet dan wat eruit komt.\n3. Krijg je geld terug? Verstuur. Over 2025 moet dat vanaf € 19.\n\nLet op: moet je over 2025 € 58 of meer betalen, dan moet je wel aangifte doen.\n\nBron: Belastingdienst (2026). Gemiddelden bijbaan en 70-plussers via Rodi en Welingelichte Kringen (oktober 2026). De bedragen van De Vries zijn een rekenvoorbeeld.\n\n#besparen #bespaartips #geldbesparen #belasting #belastingaangifte",
+  "bronnen": [
+    "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/hoe_werkt_inkomstenbelasting/aangifte_doen/hoeveel-jaar-terug-belastingaangifte-doen",
+    "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/belasting_betalen_terugvragen/check_of_u_belasting_terugkrijgt/check_of_u_belasting_terugkrijgt",
+    "https://www.belastingdienst.nl/wps/wcm/connect/nl/belastingaangifte/content/moet_ik_aangifte_doen",
+    "https://www.rodi.nl/dijkenwaard/nieuws/509079/jongeren-en-ouderen-laten-jaarlijks-miljoenen-aan-belastinggeld-liggen",
+    "https://www.welingelichtekringen.nl/economie/kind-van-18-tot-23-met-een-bijbaan-gemiddeld-eur800-terug-en-over-2021-kan-het-nog-tot-31-december"
+  ]
+}

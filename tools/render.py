@@ -12,12 +12,14 @@ ENC = ["-c:v", "libx264", "-crf", "19", "-preset", "veryfast", "-pix_fmt", "yuv4
 e = html.escape
 DEFS = '<svg width="0" height="0" style="position:absolute"><filter id="hand" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale="6"/></filter></svg>'
 MERK = f'<div class="merk">{F.huisje(52)}Scheelt Weer</div>'
-FIG = {"tijdschrift": F.tijdschrift, "telefoon": F.telefoon, "tv": F.tv, "potlood": F.potlood, "kalender": F.kalender, "polis": F.polis, "pleister": F.pleister, "kinderen": F.kinderen}
+FIG = {"tijdschrift": F.tijdschrift, "telefoon": F.telefoon, "tv": F.tv, "potlood": F.potlood, "kalender": F.kalender, "polis": F.polis, "pleister": F.pleister, "kinderen": F.kinderen, "kopje": F.kopje, "envelop": F.envelop}
 
 def bron(s):
     return f'<div class="bron">{e(s["bron"])}</div>' if s.get("bron") else ""
 
 def wie(s):
+    if s.get("wie_bron"):
+        return f'<div class="wie"><span>{e(s["wie_bron"])}</span></div>'
     return f'<div class="wie">{F.gezin()}<span>{e(s["wie"])}</span></div>' if s.get("wie") else ""
 
 def slide(s):
@@ -33,7 +35,7 @@ def slide(s):
     if t == "lijst":
         it = "".join(f'<div class="item">{FIG[i["figuur"]]()}<div class="naam">{e(i["naam"])}</div>{F.prijskaartje(e(i["prijs"]))}</div>' for i in s["items"])
         l, r = s["som"]
-        return f'<section class="vel c t-lijst"><div class="titel kop">{e(s["kop"])}</div><div class="lijst">{it}</div><div class="lijn"></div><div class="som"><span class="l">{e(l)}</span><span class="r">{e(r)}</span></div>{wie(s)}</section>'
+        return f'<section class="vel c t-lijst"><div class="titel kop">{e(s["kop"])}</div><div class="lijst">{it}</div><div class="lijn"></div><div class="som"><span class="l">{e(l)}</span><span class="r"{(' style="font-size:%dpx"' % s["som_maat"]) if s.get("som_maat") else ""}>{e(r)}</span></div>{wie(s)}</section>'
     if t == "munten":
         k = s["kolommen"]
         return (f'<section class="vel c t-munten"><div class="titel kop">{e(s["kop"])}</div><div class="sub">{e(s["sub"])}</div>'

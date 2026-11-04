@@ -126,5 +126,13 @@ def kinderen(m=150):
         return f'<circle cx="{x}" cy="{top-r*.95:.1f}" r="{r:.1f}" fill="{p}"/><rect x="{x-h*.21:.1f}" y="{top:.1f}" width="{h*.42:.1f}" height="{h*.72:.1f}" rx="{h*.16:.1f}" fill="{k}"/>'
     return svg(150, 150, fig(50, 100, g)+fig(104, 76, l))
 
+def kopje(m=150):
+    p, b, l = K["pruim"], K["boter"], K["lucht"]
+    return svg(150, 150, f'<ellipse cx="72" cy="128" rx="58" ry="11" fill="{p}"/><path d="M28 54 H114 V96 a30 30 0 0 1 -30 30 H58 a30 30 0 0 1 -30 -30 Z" fill="{b}"/><path d="M114 64 h10 a16 16 0 0 1 0 32 h-12" fill="none" stroke="{b}" stroke-width="10"/><rect x="36" y="54" width="70" height="12" rx="4" fill="{l}"/><path d="M54 40 c-8 -10 8 -16 0 -28 M84 40 c-8 -10 8 -16 0 -28" fill="none" stroke="{p}" stroke-width="6" stroke-linecap="round"/>')
+
+def envelop(m=150):
+    p, b, f = K["pruim"], K["boter"], K["framboos"]
+    return svg(150, 150, f'<rect x="14" y="36" width="122" height="84" rx="8" fill="{b}"/><path d="M14 44 L75 88 L136 44" fill="none" stroke="{p}" stroke-width="7" stroke-linejoin="round"/><rect x="104" y="48" width="20" height="16" rx="3" fill="{f}"/>')
+
 def rekening(m=150):
     return telefoon(m)
