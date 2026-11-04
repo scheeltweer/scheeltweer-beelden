@@ -149,7 +149,9 @@ def main():
                 lijst.write_text("".join(f"file '{d}'\n" for d in delen))
                 beeld = td / "beeld.mp4"
                 ffmpeg(["-f", "concat", "-safe", "0", "-i", str(lijst), "-c", "copy", str(beeld)])
-                ffmpeg(["-i", str(beeld), "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo", "-shortest", "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", str(map_ / "reel.mp4")])
+                ffmpeg(["-i", str(beeld), "-c:v", "copy", "-movflags", "+faststart", str(map_ / "reel.mp4")])
+                import muziek
+                muziek.zet_onder(map_ / "reel.mp4")
         b.close()
 
 if __name__ == "__main__":
