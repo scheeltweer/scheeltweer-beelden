@@ -28,7 +28,7 @@ html,body{background:var(--abrikoos)}
 .som{position:absolute;left:72px;right:72px;top:914px;display:flex;justify-content:space-between;align-items:baseline}
 .som .l{font-size:48px;font-weight:600}
 .som .r{font-family:"Titel";font-weight:700;font-size:150px;letter-spacing:-.02em;color:var(--framboos);line-height:1.05}
-.wie{position:absolute;left:72px;bottom:56px;display:flex;align-items:flex-end;gap:24px;font-size:34px;font-weight:500;line-height:1.2}
+.wie{position:absolute;left:72px;right:72px;bottom:56px;display:flex;align-items:flex-end;gap:24px;font-size:34px;font-weight:500;line-height:1.2}
 /* carrousel: munten */
 .t-munten .sub{position:absolute;left:72px;right:72px;top:186px;font-size:42px;font-weight:600}
 .munten,.bij{position:absolute;left:72px;right:60px;display:grid;grid-template-columns:232px 232px 1fr}

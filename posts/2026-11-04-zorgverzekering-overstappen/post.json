@@ -1,0 +1,92 @@
+{
+  "type": "carrousel",
+  "onderwerp": "Zorgverzekering overstappen voor 2027",
+  "slides": [
+    {
+      "sjabloon": "straat",
+      "groot": [
+        "Tot € 511",
+        "per jaar"
+      ],
+      "groot_maat": 195,
+      "geteld": 10,
+      "totaal": 10,
+      "tekst": "Verschil tussen de goedkoopste en duurste basispolis in 2026. Dekking in principe gelijk, voorwaarden niet.",
+      "bron": "Bron: Vektis, 2026. Consumentenbond."
+    },
+    {
+      "sjabloon": "lijst",
+      "kop": "Wat 2027 extra kost",
+      "items": [
+        {
+          "figuur": "polis",
+          "naam": "Ouder 1: € 12,50 per maand",
+          "prijs": "+ € 150"
+        },
+        {
+          "figuur": "polis",
+          "naam": "Ouder 2: € 12,50 per maand",
+          "prijs": "+ € 150"
+        },
+        {
+          "figuur": "kinderen",
+          "naam": "Kinderen tot 18 jaar",
+          "prijs": "€ 0"
+        }
+      ],
+      "som": [
+        "Per jaar",
+        "+ € 300"
+      ],
+      "wie": "Familie De Vries, verzonnen voorbeeld. Premie: raming kabinet."
+    },
+    {
+      "sjabloon": "munten",
+      "kop": "Stel: € 20 minder",
+      "sub": "Per maand, dus € 10 per ouder. Elke munt is een maand.",
+      "kolommen": [
+        [
+          "€ 20",
+          "per maand"
+        ],
+        [
+          "€ 240",
+          "per jaar"
+        ],
+        [
+          "€ 1.200",
+          "na 5 jaar"
+        ]
+      ],
+      "wie": "Familie De Vries, verzonnen voorbeeld"
+    },
+    {
+      "sjabloon": "stappen",
+      "kop": "Zo pak je het aan",
+      "stappen": [
+        {
+          "figuur": "polis",
+          "tekst": "Lees je polisbrief in november. Let op je premie en je aanvullende vergoedingen."
+        },
+        {
+          "figuur": "telefoon",
+          "tekst": "Vergelijk premie, voorwaarden en welke zorgverleners een contract hebben."
+        },
+        {
+          "figuur": "kalender",
+          "tekst": "Overstappen? Sluit uiterlijk 31 december af. Je nieuwe verzekeraar zegt de oude op."
+        }
+      ]
+    }
+  ],
+  "caption": "Tot € 511 per jaar. Zoveel lagen de goedkoopste en duurste basispolis in 2026 uit elkaar. Toch stapte maar 6,4% over.\n\nDe dekking is in principe gelijk, de voorwaarden niet. Goedkoop kan betekenen: minder keus in zorgverleners. Dus kijk verder dan de prijs.\n\n2027 wordt duurder. Het kabinet rekent op gemiddeld € 12,50 per maand extra premie per volwassene. De eerste premie die bekend werd, stijgt € 14,75.\n\nFamilie De Vries (verzonnen) is twee ouders en twee kinderen. Kinderen tot 18 betalen geen premie. De ouders samen dus € 300 per jaar meer. Een polis die € 10 per maand per ouder scheelt, levert ze € 240 per jaar op. Blijft dat verschil gelijk, dan is dat € 1.200 in 5 jaar.\n\nZo pak je het aan:\n1. Lees je polisbrief in november. Let op je premie en je aanvullende vergoedingen.\n2. Vergelijk premie, voorwaarden en welke zorgverleners een contract hebben.\n3. Overstappen? Sluit uiterlijk 31 december af. Je nieuwe verzekeraar zegt de oude op.\n\nBron: Vektis (Verzekerden in beeld 2026), Rijksoverheid (Prinsjesdag 2026), Consumentenbond (oktober 2026) en ACM. De bedragen van De Vries zijn een rekenvoorbeeld.\n\n#besparen #bespaartips #geldbesparen #zorgverzekering #overstappen",
+  "bronnen": [
+    "https://www.vektis.nl/uploads/Publicaties/Zorgthermometer/Zorgthermometer%20Verzekerden%20in%20Beeld_2026_update.pdf",
+    "https://www.rijksoverheid.nl/themas/overheid-en-democratie/prinsjesdag/zorg",
+    "https://www.rijksoverheid.nl/documenten/vraag-en-antwoord/zorgverzekering/premie-zorgverzekering",
+    "https://www.rijksoverheid.nl/vraag-en-antwoord/zorgverzekering/overstappen-zorgverzekeraar",
+    "https://www.consumentenbond.nl/zorgverzekering/eerste-zorgpremie-voor-2027-bekend",
+    "https://www.consumentenbond.nl/zorgverzekering/overstappen",
+    "https://consument.acm.nl/vergelijken-en-overstappen/zorg-en-zorgverzekeringen/zorgverzekering-kiezen-tips"
+  ]
+}

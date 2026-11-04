@@ -111,5 +111,20 @@ def kalender(m=150):
             s += f'<rect x="{30+c*24}" y="{68+r*21}" width="16" height="14" rx="3" fill="{k}"/>'
     return svg(150, 150, s)
 
+def polis(m=150):
+    p, b, gr = K["pruim"], K["boter"], K["groen"]
+    return svg(150, 150, f'<g transform="rotate(-5 75 75)"><path d="M28 12 H100 L124 36 V136 a6 6 0 0 1 -6 6 H28 a6 6 0 0 1 -6 -6 V18 a6 6 0 0 1 6 -6 Z" fill="{b}"/><path d="M100 12 V36 H124 Z" fill="{K["klei"]}"/><rect x="62" y="40" width="20" height="56" rx="3" fill="{gr}"/><rect x="44" y="58" width="56" height="20" rx="3" fill="{gr}"/><rect x="38" y="108" width="70" height="7" rx="3" fill="{p}"/><rect x="38" y="122" width="46" height="7" rx="3" fill="{p}"/></g>')
+
+def pleister(m=150):
+    p, b, k = K["pruim"], K["boter"], K["klei"]
+    return svg(150, 150, f'<g transform="rotate(-38 75 75)"><rect x="8" y="48" width="134" height="54" rx="26" fill="{K["mosterd"]}"/><rect x="50" y="48" width="50" height="54" fill="{b}"/><circle cx="64" cy="64" r="4" fill="{p}"/><circle cx="86" cy="64" r="4" fill="{p}"/><circle cx="64" cy="86" r="4" fill="{p}"/><circle cx="86" cy="86" r="4" fill="{p}"/></g>')
+
+def kinderen(m=150):
+    p, g, l = K["pruim"], K["mosterd"], K["lucht"]
+    def fig(x, h, k):
+        r = h*.2; top = 140-h*.72
+        return f'<circle cx="{x}" cy="{top-r*.95:.1f}" r="{r:.1f}" fill="{p}"/><rect x="{x-h*.21:.1f}" y="{top:.1f}" width="{h*.42:.1f}" height="{h*.72:.1f}" rx="{h*.16:.1f}" fill="{k}"/>'
+    return svg(150, 150, fig(50, 100, g)+fig(104, 76, l))
+
 def rekening(m=150):
     return telefoon(m)

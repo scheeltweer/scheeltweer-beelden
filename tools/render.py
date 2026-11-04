@@ -12,7 +12,7 @@ ENC = ["-c:v", "libx264", "-crf", "19", "-preset", "veryfast", "-pix_fmt", "yuv4
 e = html.escape
 DEFS = '<svg width="0" height="0" style="position:absolute"><filter id="hand" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale="6"/></filter></svg>'
 MERK = f'<div class="merk">{F.huisje(52)}Scheelt Weer</div>'
-FIG = {"tijdschrift": F.tijdschrift, "telefoon": F.telefoon, "tv": F.tv, "potlood": F.potlood, "kalender": F.kalender}
+FIG = {"tijdschrift": F.tijdschrift, "telefoon": F.telefoon, "tv": F.tv, "potlood": F.potlood, "kalender": F.kalender, "polis": F.polis, "pleister": F.pleister, "kinderen": F.kinderen}
 
 def bron(s):
     return f'<div class="bron">{e(s["bron"])}</div>' if s.get("bron") else ""
@@ -26,7 +26,10 @@ def slide(s):
         kl = [F.K["framboos"]] * s["geteld"] + [F.K["boter"]] * (s["totaal"] - s["geteld"])
         rm = [F.K["boter"]] * s["geteld"] + [F.K["klei"]] * (s["totaal"] - s["geteld"])
         g = "<br>".join(e(x) for x in s["groot"])
-        return f'<section class="vel c t-straat">{MERK}<div class="titel groot">{g}</div><div class="tekst">{e(s["tekst"])}</div>{bron(s)}{F.straat(1080, 340, kl, rm)}</section>'
+        maat = f' style="font-size:{s["groot_maat"]}px;top:176px;white-space:nowrap"' if s.get("groot_maat") else ""
+        tk = ' style="top:610px"' if s.get("groot_maat") else ""
+        br = bron(s).replace('class="bron"', 'class="bron" style="top:820px"') if s.get("groot_maat") else bron(s)
+        return f'<section class="vel c t-straat">{MERK}<div class="titel groot"{maat}>{g}</div><div class="tekst"{tk}>{e(s["tekst"])}</div>{br}{F.straat(1080, 340, kl, rm)}</section>'
     if t == "lijst":
         it = "".join(f'<div class="item">{FIG[i["figuur"]]()}<div class="naam">{e(i["naam"])}</div>{F.prijskaartje(e(i["prijs"]))}</div>' for i in s["items"])
         l, r = s["som"]
