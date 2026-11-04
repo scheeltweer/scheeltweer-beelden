@@ -1,75 +1,73 @@
 #!/usr/bin/env python3
 """Maakt de beelden van een post uit posts/<map>/post.json.
-Gebruik: python3 tools/render.py posts/<map> [--stil seconde,seconde]"""
-import json, subprocess, sys, html, pathlib, tempfile, os
+Gebruik: python3 tools/render.py posts/<map>"""
+import json, subprocess, sys, html, pathlib, tempfile
 from playwright.sync_api import sync_playwright
-
 ROOT = pathlib.Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
+import figuren as F
+
 FPS = 30
-ENC = ["-c:v","libx264","-crf","19","-preset","veryfast","-pix_fmt","yuv420p","-r",str(FPS)]
+ENC = ["-c:v", "libx264", "-crf", "19", "-preset", "veryfast", "-pix_fmt", "yuv420p", "-r", str(FPS)]
 e = html.escape
+DEFS = '<svg width="0" height="0" style="position:absolute"><filter id="hand" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale="6"/></filter></svg>'
+MERK = f'<div class="merk">{F.huisje(52)}Scheelt Weer</div>'
+FIG = {"tijdschrift": F.tijdschrift, "telefoon": F.telefoon, "tv": F.tv, "potlood": F.potlood, "kalender": F.kalender}
 
-def regel(r):
-    if r == "-": return '<hr class="streep">'
-    cls = r[2] if len(r) > 2 else ""
-    return f'<div class="rij {cls}"><span class="l">{e(r[0])}</span><span class="r">{e(r[1])}</span></div>'
+def bron(s):
+    return f'<div class="bron">{e(s["bron"])}</div>' if s.get("bron") else ""
 
-def bon(s):
-    kop = ""
-    if s.get("bonkop"):
-        kop = f'<div class="merk">{e(s["bonkop"])}</div>' + (f'<div class="sub">{e(s["sub"])}</div>' if s.get("sub") else "") + '<hr class="streep">'
-    rijen = "".join(regel(r) for r in s.get("regels", []))
-    tot = ""
-    if s.get("totaal"):
-        l, r = s["totaal"]
-        tot = f'<div class="totaal rood"><span class="l">{e(l)}</span><span class="r">{e(r)}</span></div>'
-    return f'<div class="bonwrap"><div class="papier" data-tand>{kop}{rijen}{tot}</div></div>'
+def wie(s):
+    return f'<div class="wie">{F.gezin()}<span>{e(s["wie"])}</span></div>' if s.get("wie") else ""
 
 def slide(s):
     t = s["sjabloon"]
-    merk = '<div class="merk">Scheelt Weer</div>'
-    bron = f'<div class="bron">{e(s["bron"])}</div>' if s.get("bron") else ""
-    if t == "groot":
+    if t == "straat":
+        kl = [F.K["framboos"]] * s["geteld"] + [F.K["boter"]] * (s["totaal"] - s["geteld"])
+        rm = [F.K["boter"]] * s["geteld"] + [F.K["klei"]] * (s["totaal"] - s["geteld"])
         g = "<br>".join(e(x) for x in s["groot"])
-        return f'<section class="vel c t-groot">{merk}<div class="groot">{g}</div><div class="tekst">{e(s["tekst"])}</div>{bron}</section>'
-    if t == "bon":
-        return f'<section class="vel c t-bon"><div class="kop">{e(s["kop"])}</div>{bon(s)}{bron}</section>'
+        return f'<section class="vel c t-straat">{MERK}<div class="titel groot">{g}</div><div class="tekst">{e(s["tekst"])}</div>{bron(s)}{F.straat(1080, 340, kl, rm)}</section>'
+    if t == "lijst":
+        it = "".join(f'<div class="item">{FIG[i["figuur"]]()}<div class="naam">{e(i["naam"])}</div>{F.prijskaartje(e(i["prijs"]))}</div>' for i in s["items"])
+        l, r = s["som"]
+        return f'<section class="vel c t-lijst"><div class="titel kop">{e(s["kop"])}</div><div class="lijst">{it}</div><div class="lijn"></div><div class="som"><span class="l">{e(l)}</span><span class="r">{e(r)}</span></div>{wie(s)}</section>'
+    if t == "munten":
+        k = s["kolommen"]
+        return (f'<section class="vel c t-munten"><div class="titel kop">{e(s["kop"])}</div><div class="sub">{e(s["sub"])}</div>'
+                f'<div class="munten"><div>{F.stapel(1, 44, 40)}</div><div>{F.stapel(12, 44, 40)}</div><div>{F.stapels(5, 12, 44, 40)}</div></div>'
+                f'<div class="bij"><div><b>{e(k[0][0])}</b>{e(k[0][1])}</div><div><b>{e(k[1][0])}</b>{e(k[1][1])}</div><div class="groot-b"><b>{e(k[2][0])}</b>{e(k[2][1])}</div></div>{wie(s)}</section>')
     if t == "stappen":
-        st = "".join(f'<div class="stap"><span class="n">{i+1}</span><span>{e(x)}</span></div>' for i, x in enumerate(s["stappen"]))
-        return f'<section class="vel c t-stappen"><div class="kop">{e(s["kop"])}</div><div class="bonwrap"><div class="papier" data-tand>{st}</div></div><div class="groot slot">Scheelt weer.</div>{bron}</section>'
+        st = "".join(f'<div class="stap">{FIG[x["figuur"]]()}<div class="t"><span class="n">{i+1}.</span>{e(x["tekst"])}</div></div>' for i, x in enumerate(s["stappen"]))
+        straat = F.straat(1080, 150, [F.K["groen"]]*10).replace('class="hand ', 'class="hand straatje ')
+        return f'<section class="vel c t-stappen"><div class="titel kop">{e(s["kop"])}</div><div class="stappen">{st}</div><div class="titel slot">Scheelt weer.</div>{straat}</section>'
     raise ValueError(t)
 
 def scene(s):
     t = s["sjabloon"]
-    merk = '<div class="merk">Scheelt Weer</div>'
-    bron = f'<div class="bron">{e(s["bron"])}</div>' if s.get("bron") else ""
-    if t == "hook":
-        blok = "".join(f'<span class="groot">{e(g)}</span><div class="tekst">{e(x)}</div>' for g, x in s["paren"])
-        return f'<section class="vel r">{merk}<div class="hook">{blok}</div>{bron}</section>'
-    if t == "print":
-        kop = f'<div class="kop printkop">{e(s["kop"])}</div>' if s.get("kop") else ""
-        return f'<section class="vel r"><div class="schacht">{kop}{bon(s)}</div><div class="printer"></div></section>'
+    if t == "flessen":
+        a, b = s["paren"]
+        return (f'<section class="vel r">{MERK}<div class="paar" style="top:300px"><div><div class="titel groot">{e(a[0])}</div><div class="lab">{e(a[1])}</div></div>{F.fles(F.K["framboos"])}</div>'
+                f'<div class="paar" style="top:790px"><div><div class="titel groot">{e(b[0])}</div><div class="lab">{e(b[1])}</div></div>{F.fles(F.K["groen"])}</div>{bron(s)}</section>')
+    if t == "pot":
+        u = "<br>".join(e(x) for x in s["uitleg"])
+        return (f'<section class="vel r pot"><div class="titel kop">{e(s["kop"])}</div><div class="uitleg">{u}</div>'
+                f'<div class="teller"><span class="wk" id="wk"></span><span class="bd" id="bd"></span></div>'
+                f'<svg class="hand" id="potsvg" width="1080" height="1920" style="position:absolute;left:0;top:0" viewBox="0 0 1080 1920"></svg></section>')
     if t == "eind":
-        return f'<section class="vel r">{merk}<div class="eind"><div class="kop">{e(s["kop"])}</div><div class="tekst">{e(s["tekst"])}</div></div>{bron}</section>'
+        return (f'<section class="vel r">{MERK}<div class="titel kop">{e(s["kop"])}</div><div class="tekst" style="top:700px">{e(s["tekst"])}</div>'
+                f'<div class="prent" style="left:72px;top:900px">{F.fles(F.K["framboos"])}{F.spray()}{F.emmer()}</div></section>')
     if t == "slot":
-        return f'<section class="vel r">{merk}<div class="groot slot">{"<br>".join(e(x) for x in s["groot"])}</div>{bron}</section>'
+        g = "<br>".join(e(x) for x in s["groot"])
+        straat = F.straat(1080, 380, [F.K["groen"]]*10).replace('class="hand ', 'class="hand straatje ')
+        return f'<section class="vel r">{MERK}<div class="titel slot">{g}</div>{straat}{bron(s)}</section>'
     raise ValueError(t)
 
-TAND = """() => document.querySelectorAll('[data-tand]').forEach(p => {
-  const w = p.offsetWidth, h = p.offsetHeight, b = 26, d = 13, pts = [];
-  for (let x = 0; x <= w; x += b) pts.push(`${x}px ${(x / b) % 2 ? 0 : d}px`);
-  pts.push(`${w}px ${d}px`);
-  for (let x = w; x >= 0; x -= b) pts.push(`${x}px ${(Math.round(x / b)) % 2 ? h : h - d}px`);
-  p.style.clipPath = `polygon(${pts.join(',')})`;
-})"""
-
 def pagina(pg, inner):
-    doc = f'<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="{(ROOT/"sjabloon.css").as_uri()}"><body>{inner}'
+    doc = f'<!doctype html><meta charset="utf-8"><link rel="stylesheet" href="{(ROOT/"sjabloon.css").as_uri()}"><body>{DEFS}{inner}'
     tmp = ROOT / ".tijdelijk.html"
     tmp.write_text(doc, encoding="utf-8")
     pg.goto(tmp.as_uri())
     pg.evaluate("document.fonts.ready")
-    pg.evaluate(TAND)
     tmp.unlink()
 
 def ffmpeg(args):
@@ -80,34 +78,43 @@ def stil(png, duur, uit):
     ffmpeg(["-framerate", str(FPS), "-i", str(png), "-vf", f"format=yuv420p,loop=-1:1,trim=duration={duur}", *ENC, str(t)])
     t.rename(uit)
 
-def print_scene(pg, s, uit, tmp):
-    """Papier komt regel voor regel uit de printer, per regel een korte duw."""
-    info = pg.evaluate("""() => { const p = document.querySelector('.schacht .bonwrap'), r = p.getBoundingClientRect();
-      const el = [...p.querySelectorAll('.merk,.sub,.streep,.rij,.totaal')];
-      return {h: r.height, ond: el.map(x => x.getBoundingClientRect().bottom - r.top)}; }""")
-    H, SLOT = info["h"], 1400
-    stops = [o + 16 for o in info["ond"]] + [H]
-    duw, wacht = s.get("duw", .22), s.get("wacht", .3)
-    kf, t, gevoed = [(0, 0)], 0, 0
-    for st in stops:
-        kf.append((t + duw, st)); kf.append((t + duw + wacht, st)); t += duw + wacht
-    eind = t + s.get("vast", 2.4)
-    def gevoed_op(tt):
-        for (a, x), (b, y) in zip(kf, kf[1:]):
-            if a <= tt <= b:
-                f = (tt - a) / (b - a) if b > a else 1
-                return x + (y - x) * f
-        return H
-    p = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", str(FPS), "-c:v", "mjpeg", "-i", "-", *ENC, str(uit.with_suffix(".tmp.mp4"))], stdin=subprocess.PIPE)
-    n = int(eind * FPS)
-    for i in range(n):
-        y = SLOT - gevoed_op(i / FPS)
-        pg.evaluate("y => document.querySelector('.schacht .bonwrap').style.top = y + 'px'", y)
+POT_JS = """
+(cfg) => {
+  const K = cfg.K, S = document.getElementById('potsvg');
+  const X = 300, Y = 720, W = 460, H = 600, R = 40, n = cfg.n, per = 5, rx = 40, ry = 13, stap = 42;
+  const pos = i => { const rij = Math.floor(i / per), kol = i % per; return {x: X + (W - per*78)/2 + 39 + kol*78 + (rij % 2 ? 9 : -9), y: Y + H - 50 - rij * stap}; };
+  window.potFrame = (t) => {
+    let s = `<defs><clipPath id="c"><rect x="${X+8}" y="${Y-400}" width="${W-16}" height="${H+392}" rx="${R}"/></clipPath></defs>`;
+    s += `<rect x="${X}" y="${Y}" width="${W}" height="${H}" rx="${R}" fill="${K.boter}" opacity=".62"/>`;
+    const munt = (x, y) => `<ellipse cx="${x}" cy="${y+18}" rx="${rx}" ry="${ry}" fill="${K.mosterd2}"/><rect x="${x-rx}" y="${y}" width="${2*rx}" height="18" fill="${K.mosterd2}"/><ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${K.mosterd}"/>`;
+    let geland = 0;
+    for (let i = 0; i < n; i++) {
+      const start = cfg.aanloop + i * cfg.tik, val = .34, p = pos(i), f = (t - start) / val;
+      if (f < 0) break;
+      if (f >= 1) { geland = i + 1; s += munt(p.x, p.y); }
+      else { const y0 = Y - 16; s += munt(p.x, y0 + (p.y - y0) * f * f); }
+    }
+    s += `<rect x="${X}" y="${Y}" width="${W}" height="${H}" rx="${R}" fill="none" stroke="${K.pruim}" stroke-width="10"/>`;
+    s += `<rect x="${X-18}" y="${Y-24}" width="${W+36}" height="${40}" rx="12" fill="${K.pruim}" opacity="${t < cfg.aanloop + (n-1)*cfg.tik + .34 ? 0 : 1}"/>`;
+    S.innerHTML = s;
+    document.getElementById('wk').textContent = geland ? (geland == n ? 'Per jaar' : 'Week ' + geland) : '';
+    document.getElementById('bd').textContent = geland ? '\\u20ac ' + geland * cfg.perWeek : '';
+  };
+}
+"""
+
+def pot_scene(pg, s, uit):
+    cfg = {"K": F.K, "n": s["weken"], "perWeek": s["per_week"], "aanloop": s.get("aanloop", .7), "tik": s.get("tik", .1)}
+    pg.evaluate(POT_JS, cfg)
+    eind = cfg["aanloop"] + (cfg["n"]-1)*cfg["tik"] + .34 + s.get("vast", 2.6)
+    tmp = uit.with_suffix(".tmp.mp4")
+    p = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", str(FPS), "-c:v", "mjpeg", "-i", "-", *ENC, str(tmp)], stdin=subprocess.PIPE)
+    for i in range(int(eind*FPS)):
+        pg.evaluate("t => window.potFrame(t)", i/FPS)
         p.stdin.write(pg.screenshot(type="jpeg", quality=92))
     p.stdin.close(); p.wait()
     if p.returncode: raise SystemExit("ffmpeg faalde")
-    uit.with_suffix(".tmp.mp4").rename(uit)
-    return eind
+    tmp.rename(uit)
 
 def main():
     map_ = pathlib.Path(sys.argv[1]).resolve()
@@ -119,8 +126,6 @@ def main():
             for i, s in enumerate(post["slides"], 1):
                 pagina(pg, slide(s))
                 pg.screenshot(path=str(map_ / f"slide-{i}.png"))
-                hoogte = pg.evaluate("[...document.querySelectorAll('.bonwrap')].map(x=>Math.round(x.getBoundingClientRect().bottom))")
-                print(f"slide {i}: bon-onderkant {hoogte}")
         else:
             pg = b.new_page(viewport={"width": 1080, "height": 1920})
             with tempfile.TemporaryDirectory() as td:
@@ -128,8 +133,8 @@ def main():
                 for i, s in enumerate(post["scenes"]):
                     pagina(pg, scene(s))
                     uit = td / f"s{i}.mp4"
-                    if s["sjabloon"] == "print":
-                        print_scene(pg, s, uit, td)
+                    if s["sjabloon"] == "pot":
+                        pot_scene(pg, s, uit)
                     else:
                         png = td / f"s{i}.png"; pg.screenshot(path=str(png))
                         if i == 0: pg.screenshot(path=str(map_ / "omslag.jpg"), type="jpeg", quality=92)

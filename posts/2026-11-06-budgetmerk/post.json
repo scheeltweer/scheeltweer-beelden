@@ -3,7 +3,7 @@
   "onderwerp": "Budgetmerk in plaats van A-merk",
   "scenes": [
     {
-      "sjabloon": "hook",
+      "sjabloon": "flessen",
       "duur": 3.6,
       "paren": [
         [
@@ -18,34 +18,15 @@
       "bron": "Bron: Consumentenbond, oktober 2026"
     },
     {
-      "sjabloon": "print",
-      "bonkop": "Familie De Vries",
-      "sub": "Verzonnen voorbeeld",
-      "regels": [
-        [
-          "A-merken, per week",
-          "€ 10,00"
-        ],
-        [
-          "Zelfde spullen, budget",
-          "€ 5,00"
-        ],
-        "-",
-        [
-          "Scheelt per week",
-          "€ 5,00"
-        ],
-        [
-          "x 52 weken",
-          ""
-        ],
-        "-"
+      "sjabloon": "pot",
+      "kop": "Zo scheelt dat",
+      "uitleg": [
+        "Familie De Vries, verzonnen voorbeeld.",
+        "€ 10 per week aan A-merken.",
+        "Budget kost ongeveer de helft: € 5."
       ],
-      "totaal": [
-        "Per jaar",
-        "€ 260,00"
-      ],
-      "kop": "Zo scheelt dat"
+      "weken": 52,
+      "per_week": 5
     },
     {
       "sjabloon": "eind",

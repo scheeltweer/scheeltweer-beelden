@@ -3,75 +3,78 @@
   "onderwerp": "Vergeten abonnementen",
   "slides": [
     {
-      "sjabloon": "groot",
+      "sjabloon": "straat",
       "groot": [
         "9 van",
         "de 10"
       ],
+      "geteld": 9,
+      "totaal": 10,
       "tekst": "schatten hun aantal abonnementen te laag. Jij waarschijnlijk ook.",
       "bron": "Bron: Nibud, 2019"
     },
     {
-      "sjabloon": "bon",
+      "sjabloon": "lijst",
       "kop": "Drie abonnementen die niemand gebruikt",
-      "bonkop": "Familie De Vries",
-      "sub": "Verzonnen voorbeeld",
-      "regels": [
-        [
-          "Tijdschrift, ongelezen",
-          "€ 9,50"
-        ],
-        [
-          "App van die ene keer",
-          "€ 4,99"
-        ],
-        [
-          "Tweede streamingdienst",
-          "€ 13,99"
-        ],
-        "-"
+      "items": [
+        {
+          "figuur": "tijdschrift",
+          "naam": "Tijdschrift, ongelezen",
+          "prijs": "€ 9,50"
+        },
+        {
+          "figuur": "telefoon",
+          "naam": "App van die ene keer",
+          "prijs": "€ 4,99"
+        },
+        {
+          "figuur": "tv",
+          "naam": "Tweede streamingdienst",
+          "prijs": "€ 13,99"
+        }
       ],
-      "totaal": [
+      "som": [
         "Per maand",
         "€ 28,48"
-      ]
+      ],
+      "wie": "Familie De Vries, verzonnen voorbeeld"
     },
     {
-      "sjabloon": "bon",
+      "sjabloon": "munten",
       "kop": "Zo loopt het op",
-      "bonkop": "Familie De Vries",
-      "sub": "Verzonnen voorbeeld",
-      "regels": [
+      "sub": "Elke munt is een maand.",
+      "kolommen": [
         [
-          "Per maand",
-          "€ 28,48"
+          "€ 28,48",
+          "per maand"
         ],
         [
-          "x 12 maanden",
-          ""
+          "€ 341,76",
+          "per jaar"
         ],
         [
-          "Per jaar",
-          "€ 341,76"
-        ],
-        [
-          "x 5 jaar",
-          ""
-        ],
-        "-"
+          "€ 1.708,80",
+          "na 5 jaar"
+        ]
       ],
-      "totaal": [
-        "Na 5 jaar",
-        "€ 1.708,80"
-      ]
+      "wie": "Familie De Vries, verzonnen voorbeeld"
     },
     {
       "sjabloon": "stappen",
       "kop": "Zo vind je de jouwe",
       "stappen": [
-        "Zoek in je bank-app een jaar aan afschrijvingen na. Anders mis je jaarabonnementen.",
-        "Streep door wat je de afgelopen maand niet hebt gebruikt.",
-        "Zeg op en zet de opzegdatum in je agenda."
+        {
+          "figuur": "telefoon",
+          "tekst": "Zoek in je bank-app een jaar aan afschrijvingen na. Anders mis je jaarabonnementen."
+        },
+        {
+          "figuur": "potlood",
+          "tekst": "Streep door wat je de afgelopen maand niet hebt gebruikt."
+        },
+        {
+          "figuur": "kalender",
+          "tekst": "Zeg op en zet de opzegdatum in je agenda."
+        }
       ]
     }
   ],
