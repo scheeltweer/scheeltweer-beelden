@@ -1,0 +1,84 @@
+{
+  "type": "carrousel",
+  "onderwerp": "Vergeten abonnementen",
+  "slides": [
+    {
+      "sjabloon": "groot",
+      "groot": [
+        "9 van",
+        "de 10"
+      ],
+      "tekst": "schatten hun aantal abonnementen te laag. Jij waarschijnlijk ook.",
+      "bron": "Bron: Nibud, 2019"
+    },
+    {
+      "sjabloon": "bon",
+      "kop": "Drie abonnementen die niemand gebruikt",
+      "bonkop": "Familie De Vries",
+      "sub": "Verzonnen voorbeeld",
+      "regels": [
+        [
+          "Tijdschrift, ongelezen",
+          "€ 9,50"
+        ],
+        [
+          "App van die ene keer",
+          "€ 4,99"
+        ],
+        [
+          "Tweede streamingdienst",
+          "€ 13,99"
+        ],
+        "-"
+      ],
+      "totaal": [
+        "Per maand",
+        "€ 28,48"
+      ]
+    },
+    {
+      "sjabloon": "bon",
+      "kop": "Zo loopt het op",
+      "bonkop": "Familie De Vries",
+      "sub": "Verzonnen voorbeeld",
+      "regels": [
+        [
+          "Per maand",
+          "€ 28,48"
+        ],
+        [
+          "x 12 maanden",
+          ""
+        ],
+        [
+          "Per jaar",
+          "€ 341,76"
+        ],
+        [
+          "x 5 jaar",
+          ""
+        ],
+        "-"
+      ],
+      "totaal": [
+        "Na 5 jaar",
+        "€ 1.708,80"
+      ]
+    },
+    {
+      "sjabloon": "stappen",
+      "kop": "Zo vind je de jouwe",
+      "stappen": [
+        "Zoek in je bank-app een jaar aan afschrijvingen na. Anders mis je jaarabonnementen.",
+        "Streep door wat je de afgelopen maand niet hebt gebruikt.",
+        "Zeg op en zet de opzegdatum in je agenda."
+      ]
+    }
+  ],
+  "caption": "9 van de 10 mensen schatten hun aantal abonnementen te laag.\n\nFamilie De Vries (verzonnen) vond er drie die ze niet gebruikten. Samen € 28,48 per maand. Dat is € 341,76 per jaar en € 1.708,80 in vijf jaar.\n\nZo vind je de jouwe:\n1. Zoek in je bank-app een jaar aan afschrijvingen na.\n2. Streep door wat je de afgelopen maand niet hebt gebruikt.\n3. Zeg op en zet de opzegdatum in je agenda.\n\nHoeveel had jij er?\n\nBron: Nibud, onderzoek uit 2019. De bedragen zijn een rekenvoorbeeld.\n\n#besparen #bespaartips #geldbesparen #abonnementen #vastelasten",
+  "bronnen": [
+    "https://radar.avrotros.nl/artikelen/31864",
+    "https://www.banken.nl/nieuws/21584/nederlanders-hebben-meer-abonnementen-dan-ze-denken-fintech-speelt-hierop-in",
+    "https://www.rabobank.nl/particulieren/financieel-gezond/besparen/besparen-op-abonnementen"
+  ]
+}

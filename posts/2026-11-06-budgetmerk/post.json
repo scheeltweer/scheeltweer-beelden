@@ -1,0 +1,73 @@
+{
+  "type": "reel",
+  "onderwerp": "Budgetmerk in plaats van A-merk",
+  "scenes": [
+    {
+      "sjabloon": "hook",
+      "duur": 3.6,
+      "paren": [
+        [
+          "+2%",
+          "A-merken, in een jaar"
+        ],
+        [
+          "−6%",
+          "Budgetmerken, in een jaar"
+        ]
+      ],
+      "bron": "Bron: Consumentenbond, oktober 2026"
+    },
+    {
+      "sjabloon": "print",
+      "bonkop": "Familie De Vries",
+      "sub": "Verzonnen voorbeeld",
+      "regels": [
+        [
+          "A-merken, per week",
+          "€ 10,00"
+        ],
+        [
+          "Zelfde spullen, budget",
+          "€ 5,00"
+        ],
+        "-",
+        [
+          "Scheelt per week",
+          "€ 5,00"
+        ],
+        [
+          "x 52 weken",
+          ""
+        ],
+        "-"
+      ],
+      "totaal": [
+        "Per jaar",
+        "€ 260,00"
+      ],
+      "kop": "Zo scheelt dat"
+    },
+    {
+      "sjabloon": "eind",
+      "duur": 3.4,
+      "kop": "Begin bij wasmiddel en schoonmaak",
+      "tekst": "Daar is het verschil vaak het grootst."
+    },
+    {
+      "sjabloon": "slot",
+      "duur": 2.8,
+      "groot": [
+        "Scheelt",
+        "weer."
+      ],
+      "bron": "Bron: Consumentenbond, 2022 tot 2026. Budget kost ongeveer de helft. Aanbiedingen niet meegerekend."
+    }
+  ],
+  "caption": "A-merken werden in een jaar 2% duurder. Budgetmerken juist 6% goedkoper.\n\nBudgetmerken kosten ongeveer de helft. Geeft familie De Vries (verzonnen) € 10 per week uit aan A-merken die ook als budget bestaan? Dan scheelt dat € 5 per week, of € 260 per jaar.\n\nBegin bij wasmiddel en schoonmaak. Daar is het verschil vaak het grootst.\n\nBron: prijspeilingen van de Consumentenbond uit oktober 2026, december 2024 en oktober 2022. Alleen reguliere prijzen, aanbiedingen zijn niet meegerekend. Die zijn er vaker bij A-merken, dus je voordeel kan kleiner zijn.\n\n#besparen #bespaartips #boodschappen #huismerk #geldbesparen",
+  "bronnen": [
+    "https://www.consumentenbond.nl/nieuws/2026/a-merken-weer-duurder-budgetmerken-dalen-in-prijs",
+    "https://www.bnnvara.nl/kassa/artikelen/nettorama-goedkoopste-supermarkt-voor-a-merken-spar-is-het-duurst",
+    "https://www.bnnvara.nl/kassa/artikelen/prijspeiling-huismerken-in-de-supermarkt-54-procent-goedkoper-dan-a-merken",
+    "https://www.bnnvara.nl/kassa/artikelen/consument-helft-goedkoper-uit-bij-aanschaf-van-budgetmerken-in-de-supermarkt"
+  ]
+}
