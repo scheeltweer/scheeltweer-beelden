@@ -12,7 +12,7 @@ ENC = ["-c:v", "libx264", "-crf", "19", "-preset", "veryfast", "-pix_fmt", "yuv4
 e = html.escape
 DEFS = '<svg width="0" height="0" style="position:absolute"><filter id="hand" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".022" numOctaves="2" seed="7" result="r"/><feDisplacementMap in="SourceGraphic" in2="r" scale="6"/></filter></svg>'
 MERK = f'<div class="merk">{F.huisje(52)}Scheelt Weer</div>'
-FIG = {"tijdschrift": F.tijdschrift, "telefoon": F.telefoon, "tv": F.tv, "potlood": F.potlood, "kalender": F.kalender, "polis": F.polis, "pleister": F.pleister, "kinderen": F.kinderen, "kopje": F.kopje, "envelop": F.envelop}
+FIG = {"tijdschrift": F.tijdschrift, "telefoon": F.telefoon, "tv": F.tv, "potlood": F.potlood, "kalender": F.kalender, "polis": F.polis, "pleister": F.pleister, "kinderen": F.kinderen, "kopje": F.kopje, "envelop": F.envelop, "modem": F.modem_slaapt}
 
 def bron(s):
     return f'<div class="bron">{e(s["bron"])}</div>' if s.get("bron") else ""
@@ -51,16 +51,21 @@ def scene(s):
     t = s["sjabloon"]
     if t == "flessen":
         a, b = s["paren"]
-        return (f'<section class="vel r">{MERK}<div class="paar" style="top:300px"><div><div class="titel groot">{e(a[0])}</div><div class="lab">{e(a[1])}</div></div>{F.fles(F.K["framboos"])}</div>'
-                f'<div class="paar" style="top:790px"><div><div class="titel groot">{e(b[0])}</div><div class="lab">{e(b[1])}</div></div>{F.fles(F.K["groen"])}</div>{bron(s)}</section>')
+        fa, fb = (getattr(F, n)() for n in s["figuren"]) if s.get("figuren") else (F.fles(F.K["framboos"]), F.fles(F.K["groen"]))
+        kop = f'<div class="titel kop" style="top:270px;font-size:92px">{e(s["kop"])}</div>' if s.get("kop") else ""
+        ta, tb = (490, 900) if s.get("kop") else (300, 790)
+        return (f'<section class="vel r">{MERK}{kop}<div class="paar" style="top:{ta}px"><div><div class="titel groot">{e(a[0])}</div><div class="lab">{e(a[1])}</div></div>{fa}</div>'
+                f'<div class="paar" style="top:{tb}px"><div><div class="titel groot">{e(b[0])}</div><div class="lab">{e(b[1])}</div></div>{fb}</div>{bron(s)}</section>')
     if t == "pot":
         u = "<br>".join(e(x) for x in s["uitleg"])
         return (f'<section class="vel r pot"><div class="titel kop">{e(s["kop"])}</div><div class="uitleg">{u}</div>'
                 f'<div class="teller"><span class="wk" id="wk"></span><span class="bd" id="bd"></span></div>'
                 f'<svg class="hand" id="potsvg" width="1080" height="1920" style="position:absolute;left:0;top:0" viewBox="0 0 1080 1920"></svg></section>')
     if t == "eind":
-        return (f'<section class="vel r">{MERK}<div class="titel kop">{e(s["kop"])}</div><div class="tekst" style="top:700px">{e(s["tekst"])}</div>'
-                f'<div class="prent" style="left:72px;top:900px">{F.fles(F.K["framboos"])}{F.spray()}{F.emmer()}</div></section>')
+        prent = "".join(FIG[n]() for n in s["figuren"]) if s.get("figuren") else f'{F.fles(F.K["framboos"])}{F.spray()}{F.emmer()}'
+        kl = " groot" if s.get("figuren") else ""
+        return (f'<section class="vel r">{MERK}<div class="titel kop">{e(s["kop"])}</div><div class="tekst" style="top:{s.get("tekst_top", 700)}px">{e(s["tekst"])}</div>'
+                f'<div class="prent{kl}" style="left:72px;top:{s.get("prent_top", 900)}px">{prent}</div></section>')
     if t == "slot":
         g = "<br>".join(e(x) for x in s["groot"])
         straat = F.straat(1080, 380, [F.K["groen"]]*10).replace('class="hand ', 'class="hand straatje ')
@@ -86,8 +91,8 @@ def stil(png, duur, uit):
 POT_JS = """
 (cfg) => {
   const K = cfg.K, S = document.getElementById('potsvg');
-  const X = 300, Y = 720, W = 460, H = 600, R = 40, n = cfg.n, per = 5, rx = 40, ry = 13, stap = 42;
-  const pos = i => { const rij = Math.floor(i / per), kol = i % per; return {x: X + (W - per*78)/2 + 39 + kol*78 + (rij % 2 ? 9 : -9), y: Y + H - 50 - rij * stap}; };
+  const X = 300, Y = 720, W = 460, H = 600, R = 40, n = cfg.n, per = cfg.per, rx = cfg.rx, ry = cfg.rx * 13 / 40, stap = cfg.stap, dx = cfg.dx;
+  const pos = i => { const rij = Math.floor(i / per), kol = i % per; return {x: X + (W - per*dx)/2 + dx/2 + kol*dx + (rij % 2 ? 9 : -9), y: Y + H - 50 - rij * stap}; };
   window.potFrame = (t) => {
     let s = `<defs><clipPath id="c"><rect x="${X+8}" y="${Y-400}" width="${W-16}" height="${H+392}" rx="${R}"/></clipPath></defs>`;
     s += `<rect x="${X}" y="${Y}" width="${W}" height="${H}" rx="${R}" fill="${K.boter}" opacity=".62"/>`;
@@ -102,14 +107,15 @@ POT_JS = """
     s += `<rect x="${X}" y="${Y}" width="${W}" height="${H}" rx="${R}" fill="none" stroke="${K.pruim}" stroke-width="10"/>`;
     s += `<rect x="${X-18}" y="${Y-24}" width="${W+36}" height="${40}" rx="12" fill="${K.pruim}" opacity="${t < cfg.aanloop + (n-1)*cfg.tik + .34 ? 0 : 1}"/>`;
     S.innerHTML = s;
-    document.getElementById('wk').textContent = geland ? (geland == n ? 'Per jaar' : 'Week ' + geland) : '';
+    document.getElementById('wk').textContent = geland ? (geland == n ? 'Per jaar' : cfg.eenheid + ' ' + geland) : '';
     document.getElementById('bd').textContent = geland ? '\\u20ac ' + geland * cfg.perWeek : '';
   };
 }
 """
 
 def pot_scene(pg, s, uit):
-    cfg = {"K": F.K, "n": s["weken"], "perWeek": s["per_week"], "aanloop": s.get("aanloop", .7), "tik": s.get("tik", .1)}
+    cfg = {"K": F.K, "n": s.get("weken", s.get("aantal")), "perWeek": s.get("per_week", s.get("per_stap")), "aanloop": s.get("aanloop", .7), "tik": s.get("tik", .1),
+           "eenheid": s.get("eenheid", "Week"), "per": s.get("per_rij", 5), "rx": s.get("munt", 40), "stap": s.get("munt_stap", 42), "dx": s.get("munt_dx", 78)}
     pg.evaluate(POT_JS, cfg)
     eind = cfg["aanloop"] + (cfg["n"]-1)*cfg["tik"] + .34 + s.get("vast", 2.6)
     tmp = uit.with_suffix(".tmp.mp4")

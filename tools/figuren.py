@@ -134,5 +134,25 @@ def envelop(m=150):
     p, b, f = K["pruim"], K["boter"], K["framboos"]
     return svg(150, 150, f'<rect x="14" y="36" width="122" height="84" rx="8" fill="{b}"/><path d="M14 44 L75 88 L136 44" fill="none" stroke="{p}" stroke-width="7" stroke-linejoin="round"/><rect x="104" y="48" width="20" height="16" rx="3" fill="{f}"/>')
 
+def _zzz(x, y):
+    p = K["pruim"]
+    return (f'<text x="{x}" y="{y}" font-family="Titel" font-weight="700" font-size="58" fill="{p}">Z</text>'
+            f'<text x="{x+44}" y="{y-32}" font-family="Titel" font-weight="700" font-size="42" fill="{p}">z</text>'
+            f'<text x="{x+76}" y="{y-56}" font-family="Titel" font-weight="700" font-size="30" fill="{p}">z</text>')
+
+def _ogen(cx, y, afstand=30, r=15):
+    return "".join(f'<path d="M{x-r} {y} q{r} {r} {2*r} 0" fill="none" stroke="{K["pruim"]}" stroke-width="7" stroke-linecap="round"/>' for x in (cx-afstand, cx+afstand))
+
+def modem_slaapt():
+    """Slapend modem met dichte ogen en zzz."""
+    p, b, f = K["pruim"], K["boter"], K["framboos"]
+    return svg(200, 320, f'<path d="M50 190 L34 110 M150 190 L166 118" stroke="{p}" stroke-width="10" stroke-linecap="round"/><circle cx="34" cy="106" r="10" fill="{f}"/><circle cx="166" cy="114" r="10" fill="{f}"/>'
+      f'<rect x="10" y="186" width="180" height="106" rx="18" fill="{b}"/><rect x="10" y="262" width="180" height="30" rx="14" fill="{f}"/>{_ogen(100, 222)}<rect x="24" y="292" width="30" height="14" rx="5" fill="{p}"/><rect x="146" y="292" width="30" height="14" rx="5" fill="{p}"/>{_zzz(78, 92)}')
+
+def telefoon_slaapt():
+    """Slapende telefoon met dichte ogen en zzz."""
+    p, b, gr = K["pruim"], K["boter"], K["groen"]
+    return svg(200, 320, f'<rect x="38" y="92" width="124" height="220" rx="20" fill="{p}"/><rect x="50" y="110" width="100" height="172" rx="6" fill="{b}"/>{_ogen(100, 180, 26, 13)}<circle cx="100" cy="222" r="9" fill="{gr}"/><rect x="86" y="292" width="28" height="7" rx="3" fill="{b}"/>{_zzz(78, 88)}')
+
 def rekening(m=150):
     return telefoon(m)

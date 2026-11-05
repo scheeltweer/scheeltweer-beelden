@@ -60,3 +60,4 @@ html,body{background:var(--abrikoos)}
 .pot .teller{position:absolute;left:72px;right:130px;top:490px;display:flex;justify-content:space-between;align-items:baseline}
 .pot .teller .wk{font-size:58px;font-weight:600}
 .pot .teller .bd{font-family:"Titel";font-weight:700;font-size:170px;letter-spacing:-.02em;color:var(--framboos);line-height:1}
+.r .prent.groot svg{width:260px;height:260px}

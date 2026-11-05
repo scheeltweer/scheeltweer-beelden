@@ -1,0 +1,56 @@
+{
+  "type": "reel",
+  "onderwerp": "Slapend internet- of mobiel abonnement",
+  "scenes": [
+    {
+      "sjabloon": "flessen",
+      "duur": 4.2,
+      "kop": "Contract voorbij, toch doorbetalen",
+      "figuren": ["modem_slaapt", "telefoon_slaapt"],
+      "paren": [
+        ["79%", "van de vaste internetabonnementen"],
+        ["60%", "van de mobiele abonnementen"]
+      ],
+      "bron": "Bron: ACM, consumentenonderzoek 2024"
+    },
+    {
+      "sjabloon": "pot",
+      "kop": "Zo loopt dat op",
+      "uitleg": [
+        "Familie De Vries, verzonnen voorbeeld.",
+        "Hun internet werd in een paar jaar",
+        "€ 10 per maand duurder."
+      ],
+      "aantal": 12,
+      "per_stap": 10,
+      "eenheid": "Maand",
+      "tik": 0.34,
+      "per_rij": 3,
+      "munt": 62,
+      "munt_stap": 104,
+      "munt_dx": 142
+    },
+    {
+      "sjabloon": "eind",
+      "duur": 4.4,
+      "kop": "Zoek op wanneer je contract afliep",
+      "tekst": "Is dat voorbij? Dan zit je er nog maar 1 maand aan vast.",
+      "tekst_top": 680,
+      "prent_top": 980,
+      "figuren": ["kalender", "envelop", "telefoon"]
+    },
+    {
+      "sjabloon": "slot",
+      "duur": 2.8,
+      "groot": ["Scheelt", "weer."],
+      "bron": "Bron: ACM, 2024 en 2026, en Rijksoverheid. De Vries is verzonnen, de bedragen zijn een rekenvoorbeeld."
+    }
+  ],
+  "caption": "Je internetcontract is al afgelopen. Je betaalt gewoon door. Vaak meer dan nodig.\n\nBij 79% van de vaste internetabonnementen is de eerste contractperiode voorbij. Bij mobiel is dat 60%. Zo'n slapend abonnement loopt vanzelf door.\n\nAanbieders verhogen elk jaar de prijs voor bestaande klanten. Volgens de ACM kan dat in een paar jaar oplopen tot € 10 per maand boven de prijs waarmee je begon.\n\nStel: familie De Vries (verzonnen) betaalt daardoor € 10 per maand meer. Dat is € 120 per jaar. Bij lage internetsnelheden kan een nieuw abonnement volgens de ACM tot € 250 per jaar schelen.\n\nZo pak je het aan:\n1. Zoek op wanneer je contract afliep.\n2. Voorbij? Dan kun je opzeggen met 1 maand opzegtermijn.\n3. Vraag je aanbieder om een nieuw contract, of vergelijk met anderen. Je zit dan vaak weer 1 of 2 jaar vast.\n\nBron: ACM (consumentenonderzoek 2024, bericht februari 2026) en Rijksoverheid. De bedragen van De Vries zijn een rekenvoorbeeld.\n\n#besparen #bespaartips #geldbesparen #vastelasten #internetabonnement",
+  "bronnen": [
+    "https://www.acm.nl/nl/publicaties/acm-strenger-toezicht-op-informatieplicht-telecombedrijven-en-nader-onderzoek-prijzen-budgetsegment-internetdiensten",
+    "https://www.acm.nl/nl/publicaties/acm-telecomaanbieders-moeten-consumenten-duidelijker-en-transparanter-voorlichten-over-vast-internet",
+    "https://www.rijksoverheid.nl/documenten/vraag-en-antwoord/bescherming-van-consumenten/mogen-abonnementen-stilzwijgend-verlengd-worden",
+    "https://www.acm.nl/nl/onderwerpen/consumentenrecht/prijzen-en-overeenkomsten/regels-voor-het-verlengen-en-opzeggen-van-abonnementen/"
+  ]
+}
